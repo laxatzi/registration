@@ -4,4 +4,5 @@ RewriteEngine On
 RewriteBase /
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^(.\*)$ index.php?$1 [L,QSA]
+#When saving with Ctrl + S, prettier mess with the RewriteRule-- Save from the menu (Alt->File)
+RewriteRule ^(.*)$ index.php?$1 [L,QSA]
