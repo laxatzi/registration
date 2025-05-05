@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use \Core\View;
+use \App\Models\User;
 
 /**
  * Home controller
@@ -29,6 +30,8 @@ class Signup extends \Core\Controller
      */
     public function createAction() {
         $user = new User($_POST);
+
+        $user->save();
     }
 
 }
