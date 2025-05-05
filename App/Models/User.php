@@ -9,18 +9,28 @@ use PDO;
  *
  * PHP version 7.0
  */
-class User extends \Core\Model
-{
+class User extends \Core\Model {
 
     /**
-     * Get all the users as an associative array
+     * Class constructor
      *
-     * @return array
+     * @param array $data initial property values
+     *
+     * @return void
      */
-    public static function getAll()
-    {
-        $db = static::getDB();
-        $stmt = $db->query('SELECT id, name FROM users');
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    public function __construct($data){
+        foreach ($data as $key => $value) {
+            $this->$key = $value;
+        }
+    }
+
+    /**
+     * Save user model with the current property values
+     * @return void
+     */
+    public function save() {
+
+
     }
 }
