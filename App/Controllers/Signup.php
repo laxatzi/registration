@@ -13,7 +13,7 @@ class Signup extends \Core\Controller
 {
 
     /**
-     * Show the index page
+     * Show the register page
      *
      * @return void
      */
@@ -21,4 +21,14 @@ class Signup extends \Core\Controller
     {
         View::renderTemplate('Signup/new.html');
     }
+
+   /**
+     * Register a new user
+     *
+     * @return void
+     */
+    public function createAction() {
+        var_dump($_POST);
+    }
+
 }
