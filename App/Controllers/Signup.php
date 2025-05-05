@@ -28,7 +28,7 @@ class Signup extends \Core\Controller
      * @return void
      */
     public function createAction() {
-        var_dump($_POST);
+        $user = new User($_POST);
     }
 
 }
