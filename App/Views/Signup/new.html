@@ -1,6 +1,51 @@
 {% extends "base.html" %} {% block title %}Register{% endblock %} {% block body
 %}
 
-<h1>Register!</h1>
+<h1>Registration page</h1>
+
+<form action="post">
+  <div>
+    <label for="inputName">Name</label>
+    <input
+      type="text"
+      id="inputName"
+      placeholder="Name"
+      name="name"
+      autofocus
+    />
+  </div>
+  <div>
+    <label for="inputEmail">Email address</label>
+    <input
+      type="email"
+      id="inputEmail"
+      placeholder="Email address"
+      name="email"
+      autofocus
+    />
+  </div>
+  <div>
+    <label for="inputPassword">Password</label>
+    <input
+      type="password"
+      id="inputPassword"
+      placeholder="password"
+      name="password"
+      autofocus
+    />
+  </div>
+  <div>
+    <label for="inputPasswordRepeat">Repeat Password</label>
+    <input
+      type="password"
+      id="inputPasswordRepeat"
+      placeholder="repeat password"
+      name="repeat_password"
+      autofocus
+    />
+  </div>
+
+  <button type="submit">Sign Up</button>
+</form>
 
 {% endblock %}
