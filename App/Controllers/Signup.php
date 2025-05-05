@@ -9,7 +9,7 @@ use \Core\View;
  *
  * PHP version 7.0
  */
-class Home extends \Core\Controller
+class Signup extends \Core\Controller
 {
 
     /**
@@ -17,7 +17,7 @@ class Home extends \Core\Controller
      *
      * @return void
      */
-    public function indexAction()
+    public function newAction()
     {
         View::renderTemplate('Signup/new.html');
     }
