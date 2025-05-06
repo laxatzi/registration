@@ -11,6 +11,12 @@ use PDO;
  */
 class User extends \Core\Model {
 
+   public $name;
+   public $email;
+   public $password;
+   public $repeat_password;
+
+
     /**
      * Class constructor
      *
