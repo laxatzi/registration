@@ -3,6 +3,16 @@
 
 <h1>Registration page</h1>
 
+{% if user.errors is not empty %}
+<p>Errors:</p>
+<ul>
+  {% for error in user.errors %}
+  <li>{{ error }}</li>
+  {% end for %}
+</ul>
+
+{% end if %}
+
 <form method="POST" action="/signup/create">
   <div>
     <label for="inputName">Name</label>
