@@ -48,7 +48,7 @@ class User extends \Core\Model {
     public function save() {
 
         $this->validate();
-
+         // if no errors
         if (empty($this->errors)) {
 
            $password_hash = password_hash($this->password, PASSWORD_DEFAULT);
@@ -64,8 +64,8 @@ class User extends \Core\Model {
             $stmt->bindValue(':name', $this->name, PDO::PARAM_STR);
             $stmt->bindValue(':email', $this->email, PDO::PARAM_STR);
             $stmt->bindValue(':password_hash', $password_hash, PDO::PARAM_STR);
-
-            $stmt->execute();
+            // execute() MUST be returned
+           return $stmt->execute();
         }
 
         return false;
@@ -111,10 +111,6 @@ class User extends \Core\Model {
         if($this->password !== $this->repeat_password) {
             $this->errors[] = "Password should match!";
         }
-
-
-
-
 
      }
 
