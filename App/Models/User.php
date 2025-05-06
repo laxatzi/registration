@@ -114,4 +114,28 @@ class User extends \Core\Model {
 
      }
 
+      /**
+     * Check if a user record already exists with the specified email
+     * @param string $email email address to search for
+     * @return boolean True if a record already exists
+     */
+
+     protected function emailExist($email) {
+
+          $sql = 'Select * from users where email = :email';
+
+            $db = static::getDB();
+            $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+
+            $stmt = $db->prepare($sql);
+            $stmt->bindValue(':email', $email, PDO::PARAM_STR);
+
+
+            $stmt->execute();
+
+            return $stmt->fetch() !== false;
+
+     }
+
 }
