@@ -49,22 +49,26 @@ class User extends \Core\Model {
 
         $this->validate();
 
-    $password_hash = password_hash($this->password, PASSWORD_DEFAULT);
+        if (empty($this->errors)) {
+
+           $password_hash = password_hash($this->password, PASSWORD_DEFAULT);
 
 
-     $sql = 'INSERT INTO USERS (name, email, password ) VALUES (:name, :email, :password_hash)';
+            $sql = 'INSERT INTO USERS (name, email, password ) VALUES (:name, :email, :password_hash)';
 
-     $db = static::getDB();
-     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $db = static::getDB();
+            $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 
-     $stmt = $db->prepare($sql);
-     $stmt->bindValue(':name', $this->name, PDO::PARAM_STR);
-     $stmt->bindValue(':email', $this->email, PDO::PARAM_STR);
-     $stmt->bindValue(':password_hash', $password_hash, PDO::PARAM_STR);
+            $stmt = $db->prepare($sql);
+            $stmt->bindValue(':name', $this->name, PDO::PARAM_STR);
+            $stmt->bindValue(':email', $this->email, PDO::PARAM_STR);
+            $stmt->bindValue(':password_hash', $password_hash, PDO::PARAM_STR);
 
-     $stmt->execute();
+            $stmt->execute();
+        }
 
+        return false;
     }
 
 
