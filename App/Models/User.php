@@ -47,6 +47,8 @@ class User extends \Core\Model {
      */
     public function save() {
 
+        $this->validate();
+
     $password_hash = password_hash($this->password, PASSWORD_DEFAULT);
 
 
@@ -72,6 +74,43 @@ class User extends \Core\Model {
      */
 
      public function validate() {
+        // Name
+        if ($this->name == '') {
+            $this->errors[] = "Name is required!";
+        }
+
+        // Email address
+        if (filter_var($this->email, FILTER_VALIDATE_EMAIL) === FALSE){
+            $this->errors[] = "Invalid email!";
+        }
+
+         if ($this->email == '') {
+            $this->errors[] = "Email is required!";
+        }
+
+        // Password
+
+        if (strlen($this->password) < 8) {
+            $this->errors[] = "Password must bee at least eight characters long!";
+
+        }
+
+        if(preg_match('/.*[a-z]+.*/i', $this->password)==0) {
+            $this->errors[] = "Password needs at least one letter!";
+        }
+
+          if(preg_match('/.*\d+.*/i', $this->password)==0) {
+            $this->errors[] = "Password needs at least one number!";
+
+        }
+
+        if($this->password !== $this->repeat_password) {
+            $this->errors[] = "Password should match!";
+        }
+
+
+
+
 
      }
 
