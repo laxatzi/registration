@@ -35,7 +35,8 @@ class Signup extends \Core\Controller
         View::renderTemplate('Signup/success.html');
 
        } else {
-        var_dump($user->errors);
+         var_dump($user->errors);
+
        }
 
 
