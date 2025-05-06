@@ -18,6 +18,13 @@ class User extends \Core\Model {
     protected $password_hash;
     protected $repeat_password;
 
+    /**
+     * Error message
+     * @var array
+     */
+
+     public $errors = [];
+
 
     /**
      * Class constructor
@@ -63,5 +70,9 @@ class User extends \Core\Model {
      * Validate current property values adding error messages to the error array property
      * @return void
      */
+
+     public function validate() {
+
+     }
 
 }
