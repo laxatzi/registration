@@ -36,7 +36,7 @@ class User extends \Core\Model {
 
     /**
      * Save user model with the current property values
-     * @return void
+     * @return boolean TRUE if use was saved, FALSE if not
      */
     public function save() {
 
@@ -57,4 +57,11 @@ class User extends \Core\Model {
      $stmt->execute();
 
     }
+
+
+    /**
+     * Validate current property values adding error messages to the error array property
+     * @return void
+     */
+
 }
