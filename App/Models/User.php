@@ -92,6 +92,10 @@ class User extends \Core\Model {
             $this->errors[] = "Email is required!";
         }
 
+        if($this->emailExist($this->email)) {
+            $this->errors[] = "Email already in use!";
+        }
+
         // Password
 
         if (strlen($this->password) < 8) {
