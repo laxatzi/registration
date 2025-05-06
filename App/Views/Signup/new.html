@@ -8,10 +8,10 @@
 <ul>
   {% for error in user.errors %}
   <li>{{ error }}</li>
-  {% end for %}
+  {% endfor %}
 </ul>
 
-{% end if %}
+{% endif %}
 
 <form method="POST" action="/signup/create">
   <div>
