@@ -11,10 +11,12 @@ use PDO;
  */
 class User extends \Core\Model {
 
-   public $name;
-   public $email;
-   public $password;
-   public $repeat_password;
+    public $id;
+    public $name;
+    public $email;
+    protected $password;
+    protected $password_hash;
+    protected $repeat_password;
 
 
     /**
@@ -29,6 +31,7 @@ class User extends \Core\Model {
         foreach ($data as $key => $value) {
             $this->$key = $value;
         }
+
     }
 
     /**
@@ -39,9 +42,12 @@ class User extends \Core\Model {
 
     $password_hash = password_hash($this->password, PASSWORD_DEFAULT);
 
-     $sql = 'INSERT INTO USERS (name, email, password_hash ) VALUES (:name, :email, :password_hash)';
+
+     $sql = 'INSERT INTO USERS (name, email, password ) VALUES (:name, :email, :password_hash)';
 
      $db = static::getDB();
+     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
 
      $stmt = $db->prepare($sql);
      $stmt->bindValue(':name', $this->name, PDO::PARAM_STR);
