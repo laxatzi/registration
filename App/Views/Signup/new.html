@@ -3,7 +3,6 @@ footer %}
 
 <script>
   document.addEventListener("DOMContentLoaded", function () {
-    console.log("I'm JS");
     const form = document.getElementById("signup-form");
     const passwordInput = document.getElementById("inputPassword");
     const passwordError = document.getElementById("password-error");
@@ -51,7 +50,6 @@ footer %}
       const password = passwordInput.value;
       const repeat = repeatInput.value;
       const errors = validatePassword(password);
-      console.log(errors);
 
       if (errors.length > 0 || password !== repeat) {
         e.preventDefault();
