@@ -10,7 +10,7 @@ footer %}
 
     let errors = [];
 
-    if (password.length <script minLength) {
+    if (password.length <= minLength) {
       errors.push("at least 8 characters");
     }
     if (!hasLetter) {
@@ -69,7 +69,7 @@ footer %}
 
 {% endif %}
 
-<form method="POST" action="/signup/create">
+<form method="POST" action="/signup/create" id="signup-form">
   <div>
     <label for="inputName">Name</label>
     <input
