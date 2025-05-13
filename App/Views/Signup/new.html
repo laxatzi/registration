@@ -2,56 +2,66 @@
 footer %}
 
 <script>
-  function validatePassword(password) {
-    const minLength = 8;
-    const hasLetter = /[a-zA-Z]/.test(password);
-    const hasNumber = /\d/.test(password);
-    const hasSymbol = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+  document.addEventListener("DOMContentLoaded", function () {
+    console.log("I'm JS");
+    const form = document.getElementById("signup-form");
+    const passwordInput = document.getElementById("inputPassword");
+    const passwordError = document.getElementById("password-error");
+    const repeatInput = document.getElementById("inputPasswordRepeat");
 
-    let errors = [];
+    function validatePassword(password) {
+      const minLength = 8;
+      const hasLetter = /[a-zA-Z]/.test(password);
+      const hasNumber = /\d/.test(password);
+      const hasSymbol = /[!@#$%^&*(),.?":{}|<>]/.test(password);
 
-    if (password.length <= minLength) {
-      errors.push("at least 8 characters");
+      let errors = [];
+
+      if (password.length < minLength) {
+        errors.push(`at least ${minLength} characters`);
+      }
+      if (!hasLetter) {
+        errors.push("at least one letter");
+      }
+      if (!hasNumber) {
+        errors.push("at least one number");
+      }
+      if (!hasSymbol) {
+        errors.push("at least one symbol");
+      }
+
+      return errors;
     }
-    if (!hasLetter) {
-      errors.push("one letter");
-    }
-    if (!hasNumber) {
-      errors.push("one number");
-    }
-    if (!hasSymbol) {
-      errors.push("one symbol");
-    }
 
-    return errors;
-  }
+    passwordInput.addEventListener("input", function () {
+      const password = passwordInput.value;
+      const errors = validatePassword(password);
 
-  const form = document.getElementById("signup-form");
-  const passwordInput = document.getElementById("password");
-  const passwordError = document.getElementById("password-error");
+      if (errors.length > 0) {
+        passwordError.textContent =
+          "Password must contain " + errors.join(", ") + ".";
+        passwordError.className = "error";
+      } else {
+        passwordError.textContent = "✅ Password looks good!";
+        passwordError.className = "success";
+      }
+    });
 
-  passwordInput.addEventListener("input", function () {
-    const password = passwordInput.value;
-    const errors = validatePassword(password);
+    form.addEventListener("submit", function (e) {
+      const password = passwordInput.value;
+      const repeat = repeatInput.value;
+      const errors = validatePassword(password);
+      console.log(errors);
 
-    if (errors.length > 0) {
-      passwordError.textContent =
-        "Password must contain " + errors.join(", ") + ".";
-      passwordError.className = "error";
-    } else {
-      passwordError.textContent = "✅ Password looks good!";
-      passwordError.className = "success";
-    }
-  });
+      if (errors.length > 0 || password !== repeat) {
+        e.preventDefault();
+        let message = "Fix password before submitting!";
+        if (password !== repeat) message = "Passwords do not match!";
 
-  form.addEventListener("submit", function (e) {
-    const errors = validatePassword(passwordInput.value);
-
-    if (errors.length > 0) {
-      e.preventDefault();
-      passwordError.textContent = "Fix your password before submitting.";
-      passwordError.className = "error";
-    }
+        passwordError.textContent = message;
+        passwordError.className = "error";
+      }
+    });
   });
 </script>
 
@@ -79,6 +89,7 @@ footer %}
       name="name"
       value="{{ user.name }}"
       autofocus
+      required
     />
   </div>
   <div>
@@ -90,6 +101,7 @@ footer %}
       name="email"
       value="{{ user.email }}"
       autofocus
+      required
     />
   </div>
   <div>
@@ -102,6 +114,8 @@ footer %}
       autofocus
     />
   </div>
+  <div id="password-error" class="error" style="color: red"></div>
+
   <div>
     <label for="inputPasswordRepeat">Repeat Password</label>
     <input
