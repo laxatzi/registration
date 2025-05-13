@@ -84,13 +84,10 @@ class User extends \Core\Model {
         }
 
         // Email address
-        if (filter_var($this->email, FILTER_VALIDATE_EMAIL) === FALSE){
+        if (filter_var($this->email, FILTER_VALIDATE_EMAIL) === FALSE or $this->email == ''){
             $this->errors[] = "Invalid email!";
         }
 
-         if ($this->email == '') {
-            $this->errors[] = "Email is required!";
-        }
 
         if($this->emailExist($this->email)) {
             $this->errors[] = "Email already in use!";
