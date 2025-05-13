@@ -45,8 +45,6 @@
       id="inputPassword"
       placeholder="password"
       name="password"
-      pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"
-      title="Minimum 8 characters, at least one letter and one number"
       autofocus
       required
     />
@@ -65,5 +63,61 @@
 
   <button type="submit">Sign Up</button>
 </form>
+
+{% endblock %} {% block footer %}
+
+<script>
+  function validatePassword(password) {
+    const minLength = 8;
+    const hasLetter = /[a-zA-Z]/.test(password);
+    const hasNumber = /\d/.test(password);
+    const hasSymbol = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+
+    let errors = [];
+
+    if (password.length < minLength) {
+      errors.push("at least 8 characters");
+    }
+    if (!hasLetter) {
+      errors.push("one letter");
+    }
+    if (!hasNumber) {
+      errors.push("one number");
+    }
+    if (!hasSymbol) {
+      errors.push("one symbol");
+    }
+
+    return errors;
+  }
+
+  const form = document.getElementById("signup-form");
+  const passwordInput = document.getElementById("password");
+  const passwordError = document.getElementById("password-error");
+
+  passwordInput.addEventListener("input", function () {
+    const password = passwordInput.value;
+    const errors = validatePassword(password);
+
+    if (errors.length > 0) {
+      passwordError.textContent =
+        "Password must contain " + errors.join(", ") + ".";
+      passwordError.className = "error";
+    } else {
+      passwordError.textContent = "✅ Password looks good!";
+      passwordError.className = "success";
+    }
+  });
+
+  form.addEventListener("submit", function (e) {
+    const errors = validatePassword(passwordInput.value);
+
+    if (errors.length > 0) {
+      e.preventDefault();
+      passwordError.textContent = "Fix your password before submitting.";
+      passwordError.className = "error";
+    }
+  });
+</script>
 
 {% endblock %}
