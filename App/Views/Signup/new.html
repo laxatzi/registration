@@ -1,70 +1,5 @@
-{% extends "base.html" %} {% block title %}Register{% endblock %} {% block body
-%}
-
-<h1>Registration page</h1>
-
-{% if user.errors is not empty %}
-<p>Errors:</p>
-<ul>
-  {% for error in user.errors %}
-  <li>{{ error }}</li>
-  {% endfor %}
-</ul>
-
-{% endif %}
-
-<form method="POST" action="/signup/create">
-  <div>
-    <label for="inputName">Name</label>
-    <input
-      type="text"
-      id="inputName"
-      placeholder="Name"
-      name="name"
-      value="{{ user.name }}"
-      autofocus
-      required
-    />
-  </div>
-  <div>
-    <label for="inputEmail">Email address</label>
-    <input
-      type="email"
-      id="inputEmail"
-      placeholder="Email address"
-      name="email"
-      value="{{ user.email }}"
-      autofocus
-      required
-    />
-  </div>
-  <div>
-    <label for="inputPassword">Password</label>
-    <input
-      type="password"
-      id="inputPassword"
-      placeholder="password"
-      name="password"
-      autofocus
-      required
-    />
-  </div>
-  <div>
-    <label for="inputPasswordRepeat">Repeat Password</label>
-    <input
-      type="password"
-      id="inputPasswordRepeat"
-      placeholder="repeat password"
-      name="repeat_password"
-      autofocus
-      required
-    />
-  </div>
-
-  <button type="submit">Sign Up</button>
-</form>
-
-{% endblock %} {% block footer %}
+{% extends "base.html" %} {% block title %}Register{% endblock %} {% block
+footer %}
 
 <script>
   function validatePassword(password) {
@@ -75,7 +10,7 @@
 
     let errors = [];
 
-    if (password.length < minLength) {
+    if (password.length <script minLength) {
       errors.push("at least 8 characters");
     }
     if (!hasLetter) {
@@ -119,5 +54,66 @@
     }
   });
 </script>
+
+{% endblock %} {% block body %}
+
+<h1>Registration page</h1>
+
+{% if user.errors is not empty %}
+<p>Errors:</p>
+<ul>
+  {% for error in user.errors %}
+  <li>{{ error }}</li>
+  {% endfor %}
+</ul>
+
+{% endif %}
+
+<form method="POST" action="/signup/create">
+  <div>
+    <label for="inputName">Name</label>
+    <input
+      type="text"
+      id="inputName"
+      placeholder="Name"
+      name="name"
+      value="{{ user.name }}"
+      autofocus
+    />
+  </div>
+  <div>
+    <label for="inputEmail">Email address</label>
+    <input
+      type="email"
+      id="inputEmail"
+      placeholder="Email address"
+      name="email"
+      value="{{ user.email }}"
+      autofocus
+    />
+  </div>
+  <div>
+    <label for="inputPassword">Password</label>
+    <input
+      type="password"
+      id="inputPassword"
+      placeholder="password"
+      name="password"
+      autofocus
+    />
+  </div>
+  <div>
+    <label for="inputPasswordRepeat">Repeat Password</label>
+    <input
+      type="password"
+      id="inputPasswordRepeat"
+      placeholder="repeat password"
+      name="repeat_password"
+      autofocus
+    />
+  </div>
+
+  <button type="submit">Sign Up</button>
+</form>
 
 {% endblock %}
