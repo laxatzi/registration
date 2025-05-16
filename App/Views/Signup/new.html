@@ -95,10 +95,10 @@ footer %}
 
       if (!emailRegex.test(email)) {
         feedbackElement.textContent = "❌ Invalid email format.";
-        feedbackElementValid = "";
+        feedbackElementValid.textContent = "";
       } else {
         feedbackElement.textContent = "";
-        feedbackElementValid = "✅ Email looks valid!";
+        feedbackElementValid.textContent = "✅ Email looks valid!";
       }
     });
 
@@ -109,8 +109,12 @@ footer %}
 
       if (emailRegex.test(emailInputValue)) {
         feedbackElement.textContent = ""; // Email is valid
+        feedbackElementValid.textContent = "Email looks valid!";
+        return true;
       } else {
         feedbackElement.textContent = "❌ Please enter a valid email address.";
+        feedbackElementValid.textContent = "";
+        return false;
       }
     }
 
@@ -118,6 +122,7 @@ footer %}
     form.addEventListener("submit", function (e) {
       const password = passwordInput.value;
       const errors = validatePassword(password);
+      const emailIsValid = validateEmailInput();
 
       if (errors.length > 0) {
         e.preventDefault();
@@ -127,7 +132,9 @@ footer %}
         passwordError.className = "error";
       }
 
-      validateEmailInput();
+      if (!emailIsValid) {
+        e.preventDefault();
+      }
     });
   });
 </script>
