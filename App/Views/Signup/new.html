@@ -104,10 +104,9 @@ footer %}
       }
     }
 
-    // Form submission
+    // Form validation
     form.addEventListener("submit", function (e) {
       const password = passwordInput.value;
-      // const repeat = repeatInput.value;
       const errors = validatePassword(password);
 
       if (errors.length > 0) {
@@ -161,7 +160,7 @@ footer %}
       autofocus
     />
     <div id="emailFeedback" style="color: red"></div>
-    <div id="password-success" class="error" style="color: green"></div>
+    <div id="" class="error" style="color: green"></div>
   </div>
   <div>
     <label for="inputPassword">Password</label>
