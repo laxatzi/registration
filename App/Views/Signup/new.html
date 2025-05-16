@@ -6,6 +6,7 @@ footer %}
     const form = document.getElementById("signup-form");
     const passwordInput = document.getElementById("inputPassword");
     const passwordError = document.getElementById("password-error");
+    const passwordSuccess = document.getElementById("password-success");
     const repeatInput = document.getElementById("inputPasswordRepeat");
 
     function validatePassword(password) {
@@ -38,7 +39,7 @@ footer %}
 
       if (errors.length > 0) {
         passwordError.textContent =
-          "Password must contain " + errors.join(", ") + ".";
+          "⛔Password must contain " + errors.join(", ") + ".";
         passwordError.className = "error";
       } else {
         passwordError.textContent = "✅ Password looks good!";
@@ -53,7 +54,7 @@ footer %}
 
       if (errors.length > 0 || password !== repeat) {
         e.preventDefault();
-        let message = "Fix password before submitting!";
+        let message = "⛔Fix password before submitting!";
         if (password !== repeat) message = "Passwords do not match!";
 
         passwordError.textContent = message;
@@ -113,7 +114,6 @@ footer %}
     />
   </div>
   <div id="password-error" class="error" style="color: red"></div>
-
   <div>
     <label for="inputPasswordRepeat">Repeat Password</label>
     <input
