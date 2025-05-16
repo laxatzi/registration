@@ -54,7 +54,7 @@ footer %}
 
       if (errors.length > 0 || password !== repeat) {
         e.preventDefault();
-        let message = "⛔Fix password before submitting!";
+        let message = "🛑Fix password before submitting!";
         if (password !== repeat) message = "Passwords do not match!";
 
         passwordError.textContent = message;
