@@ -12,7 +12,10 @@ footer %}
       "password_repeat-error"
     );
     const emailInput = document.getElementById("inputEmail");
-    const feedbackElement = document.getElementById("emailFeedback");
+    let feedbackElement = document.getElementById("emailFeedback");
+    let feedbackElementValid = document.getElementById(
+      "emailFeedbackValidator"
+    );
 
     // Password Validation
     const passwordRepeatSuccess = document.getElementById(
@@ -92,8 +95,10 @@ footer %}
 
       if (!emailRegex.test(email)) {
         feedbackElement.textContent = "❌ Invalid email format.";
+        feedbackElementValid = "";
       } else {
-        feedbackElement.textContent = "✅ Email looks valid!";
+        feedbackElement.textContent = "";
+        feedbackElementValid = "✅ Email looks valid!";
       }
     });
 
