@@ -70,17 +70,25 @@ footer %}
       }
     });
 
-    passwordInputRepeat.addEventListener("input", function () {
-      const repeatPassword = passwordInputRepeat.value;
-      const repeatError = validateRepeatPassword(repeatPassword);
-      if (!repeatError) {
-        passwordRepeatError.textContent = "❌ Passwords do not match!";
-      } else {
-        passwordRepeatError.textContent = "";
-        passwordRepeatSuccess.textContent = "✅ Passwords match!";
-        passwordError.className = "success";
-      }
-    });
+    // Toggle Password
+
+    function togglePassword() {
+      [passwordInput, passwordInputRepeat].forEach((field) => {
+        field.type = field.type === "password" ? "text" : "password";
+      });
+    }
+
+    // passwordInputRepeat.addEventListener("input", function () {
+    //   const repeatPassword = passwordInputRepeat.value;
+    //   const repeatError = validateRepeatPassword(repeatPassword);
+    //   if (!repeatError) {
+    //     passwordRepeatError.textContent = "❌ Passwords do not match!";
+    //   } else {
+    //     passwordRepeatError.textContent = "";
+    //     passwordRepeatSuccess.textContent = "✅ Passwords match!";
+    //     passwordError.className = "success";
+    //   }
+    // });
 
     // Email Validator
 
@@ -154,7 +162,7 @@ footer %}
 {% endif %}
 
 <form method="POST" action="/signup/create" id="signup-form">
-  <div>
+  <div class="inputForm">
     <label for="inputName">Name</label>
     <input
       type="text"
@@ -167,7 +175,8 @@ footer %}
       minlength="5"
     />
   </div>
-  <div>
+
+  <div class="inputForm">
     <label for="inputEmail">Email address</label>
     <input
       type="email"
@@ -180,7 +189,7 @@ footer %}
     <div id="emailFeedback" style="color: red"></div>
     <div id="emailFeedbackValidator" style="color: green"></div>
   </div>
-  <div>
+  <div class="inputForm">
     <label for="inputPassword">Password</label>
     <input
       type="password"
@@ -188,12 +197,14 @@ footer %}
       placeholder="Password"
       name="password"
       autofocus
-    />
+    /><label
+      ><input type="checkbox" onclick="togglePassword()" /> Show Password</label
+    >
   </div>
   <div id="password-success" class="error" style="color: green"></div>
   <div id="password-error" class="error" style="color: red"></div>
 
-  <div>
+  <!-- <div class="inputForm">
     <label for="inputPasswordRepeat">Repeat Password</label>
     <input
       type="password"
@@ -204,9 +215,9 @@ footer %}
     />
   </div>
   <div id="password_repeat-success" class="error" style="color: green"></div>
-  <div id="password_repeat-error" class="error" style="color: red"></div>
+  <div id="password_repeat-error" class="error" style="color: red"></div> -->
 
-  <button type="submit">Sign Up</button>
+  <button type="submit" style="margin-top: 20px">Sign Up</button>
 </form>
 
 {% endblock %}
