@@ -39,8 +39,8 @@ footer %}
       return errors;
     }
 
-    function validateRepeatPassword(password) {
-      const repeatPassword = passwordInputRepeat.value;
+    function validateRepeatPassword(repeatPassword) {
+      const password = passwordInput.value;
 
       if (password !== repeatPassword) {
         return false;
@@ -64,10 +64,9 @@ footer %}
     });
 
     passwordInputRepeat.addEventListener("input", function () {
-      const password = passwordInput.value;
       const repeatPassword = passwordInputRepeat.value;
-      const repeatError = validatePasswordRepeat(password);
-      if (repeatError) {
+      const repeatError = validateRepeatPassword(repeatPassword);
+      if (!repeatError) {
         passwordRepeatError.textContent = "🛑 Passwords do not match!";
       } else {
         passwordRepeatError.textContent = "";
@@ -78,7 +77,7 @@ footer %}
 
     form.addEventListener("submit", function (e) {
       const password = passwordInput.value;
-      const repeat = repeatInput.value;
+      // const repeat = repeatInput.value;
       const errors = validatePassword(password);
 
       if (errors.length > 0) {
