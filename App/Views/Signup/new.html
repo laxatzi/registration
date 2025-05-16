@@ -11,6 +11,9 @@ footer %}
     const passwordRepeatError = document.getElementById(
       "password_repeat-error"
     );
+    const emailInput = document.getElementById("inputEmail");
+
+    // Password Validation
     const passwordRepeatSuccess = document.getElementById(
       "password_repeat-success"
     );
@@ -75,6 +78,33 @@ footer %}
       }
     });
 
+    // Email Validator
+
+    passwordInputRepeat.addEventListener("input", function () {
+      const repeatPassword = passwordInputRepeat.value;
+      const repeatError = validateRepeatPassword(repeatPassword);
+      if (!repeatError) {
+        passwordRepeatError.textContent = "🛑 Passwords do not match!";
+      } else {
+        passwordRepeatError.textContent = "";
+        passwordRepeatSuccess.textContent = "✅ Passwords match!";
+        passwordError.className = "success";
+      }
+    });
+
+    function validateEmailInput() {
+      const emailInput = document.getElementById("inputEmail").value;
+      const feedbackElement = document.getElementById("emailFeedback");
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      if (emailRegex.test(emailInput)) {
+        feedbackElement.textContent = ""; // Email is valid
+      } else {
+        feedbackElement.textContent = "🛑 Please enter a valid email address.";
+      }
+    }
+
+    // Form submission
     form.addEventListener("submit", function (e) {
       const password = passwordInput.value;
       // const repeat = repeatInput.value;
@@ -87,6 +117,8 @@ footer %}
         passwordError.textContent = message;
         passwordError.className = "error";
       }
+
+      validateEmailInput();
     });
   });
 </script>
@@ -128,6 +160,8 @@ footer %}
       value="{{ user.email }}"
       autofocus
     />
+    <div id="emailFeedback" style="color: red"></div>
+    <div id="password-success" class="error" style="color: green"></div>
   </div>
   <div>
     <label for="inputPassword">Password</label>
