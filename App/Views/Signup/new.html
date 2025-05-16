@@ -12,6 +12,7 @@ footer %}
       "password_repeat-error"
     );
     const emailInput = document.getElementById("inputEmail");
+    const feedbackElement = document.getElementById("emailFeedback");
 
     // Password Validation
     const passwordRepeatSuccess = document.getElementById(
@@ -70,7 +71,7 @@ footer %}
       const repeatPassword = passwordInputRepeat.value;
       const repeatError = validateRepeatPassword(repeatPassword);
       if (!repeatError) {
-        passwordRepeatError.textContent = "🛑 Passwords do not match!";
+        passwordRepeatError.textContent = "❌ Passwords do not match!";
       } else {
         passwordRepeatError.textContent = "";
         passwordRepeatSuccess.textContent = "✅ Passwords match!";
@@ -80,27 +81,31 @@ footer %}
 
     // Email Validator
 
-    passwordInputRepeat.addEventListener("input", function () {
-      const repeatPassword = passwordInputRepeat.value;
-      const repeatError = validateRepeatPassword(repeatPassword);
-      if (!repeatError) {
-        passwordRepeatError.textContent = "🛑 Passwords do not match!";
+    emailInput.addEventListener("input", function () {
+      const email = emailInput.value;
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      if (email === "") {
+        feedbackElement.textContent = "";
+        return;
+      }
+
+      if (!emailRegex.test(email)) {
+        feedbackElement.textContent = "❌ Invalid email format.";
       } else {
-        passwordRepeatError.textContent = "";
-        passwordRepeatSuccess.textContent = "✅ Passwords match!";
-        passwordError.className = "success";
+        feedbackElement.textContent = "✅ Email looks valid!";
       }
     });
 
     function validateEmailInput() {
-      const emailInput = document.getElementById("inputEmail").value;
-      const feedbackElement = document.getElementById("emailFeedback");
+      const emailInputValue = document.getElementById("inputEmail").value;
+      //const feedbackElement = document.getElementById("emailFeedback");
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-      if (emailRegex.test(emailInput)) {
+      if (emailRegex.test(emailInputValue)) {
         feedbackElement.textContent = ""; // Email is valid
       } else {
-        feedbackElement.textContent = "🛑 Please enter a valid email address.";
+        feedbackElement.textContent = "❌ Please enter a valid email address.";
       }
     }
 
@@ -111,7 +116,7 @@ footer %}
 
       if (errors.length > 0) {
         e.preventDefault();
-        let message = "🛑 Fix password before submitting!";
+        let message = "❌ Fix password before submitting!";
 
         passwordError.textContent = message;
         passwordError.className = "error";
