@@ -7,7 +7,7 @@ footer %}
     const passwordInput = document.getElementById("inputPassword");
     const passwordError = document.getElementById("password-error");
     const passwordSuccess = document.getElementById("password-success");
-    const repeatInput = document.getElementById("inputPasswordRepeat");
+    const passwordInputRepeat = document.getElementById("inputPasswordRepeat");
 
     function validatePassword(password) {
       const minLength = 8;
@@ -33,17 +33,29 @@ footer %}
       return errors;
     }
 
+    function validateRepeatPassword(password) {
+      // validation
+    }
+
     passwordInput.addEventListener("input", function () {
       const password = passwordInput.value;
       const errors = validatePassword(password);
 
       if (errors.length > 0) {
         passwordError.textContent =
-          "Password must contain " + errors.join(", ") + ".";
+          "🛑Password must contain " + errors.join(", ") + ".";
         passwordError.className = "error";
       } else {
+        passwordError.textContent = "";
         passwordSuccess.textContent = "✅ Password looks good!";
         passwordError.className = "success";
+      }
+    });
+
+    passwordInputRepeat.addEventListener("input", function () {
+      const repeatPassword = passwordInputRepeat.value;
+      const repeatError = validatePasswordRepeat(password);
+      if (repeatError) {
       }
     });
 
@@ -52,14 +64,25 @@ footer %}
       const repeat = repeatInput.value;
       const errors = validatePassword(password);
 
-      if (errors.length > 0 || password !== repeat) {
+      if (errors.length > 0) {
         e.preventDefault();
         let message = "🛑Fix password before submitting!";
-        if (password !== repeat) message = "Passwords do not match!";
 
         passwordError.textContent = message;
         passwordError.className = "error";
       }
+
+      // if ((errors.length > 0) & (password !== repeat)) {
+      //   e.preventDefault();
+      //   let messageRepeat = "🛑Passwords do not match!";
+
+      //   passwordRepeatError.textContent = messageRepeat;
+      //   passwordRepeatError.className = "error";
+      // } else if (password === repeat) {
+      //   messageRepeat = "Passwords match!";
+      //   passwordRepeatError.textContent = messageRepeat;
+      //   passwordRepeatError.className = "success";
+      // }
     });
   });
 </script>
@@ -113,8 +136,8 @@ footer %}
       autofocus
     />
   </div>
-  <div id="password-error" class="error" style="color: red"></div>
   <div id="password-success" class="error" style="color: green"></div>
+  <div id="password-error" class="error" style="color: red"></div>
 
   <div>
     <label for="inputPasswordRepeat">Repeat Password</label>
@@ -126,6 +149,8 @@ footer %}
       autofocus
     />
   </div>
+  <div id="password_repeat-success" class="error" style="color: green"></div>
+  <div id="password_repeat-error" class="error" style="color: red"></div>
 
   <button type="submit">Sign Up</button>
 </form>
