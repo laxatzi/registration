@@ -39,10 +39,10 @@ footer %}
 
       if (errors.length > 0) {
         passwordError.textContent =
-          "⛔Password must contain " + errors.join(", ") + ".";
+          "Password must contain " + errors.join(", ") + ".";
         passwordError.className = "error";
       } else {
-        passwordError.textContent = "✅ Password looks good!";
+        passwordSuccess.textContent = "✅ Password looks good!";
         passwordError.className = "success";
       }
     });
@@ -114,6 +114,8 @@ footer %}
     />
   </div>
   <div id="password-error" class="error" style="color: red"></div>
+  <div id="password-success" class="error" style="color: green"></div>
+
   <div>
     <label for="inputPasswordRepeat">Repeat Password</label>
     <input
