@@ -123,7 +123,22 @@ class User extends \Core\Model {
 
      protected function emailExist($email) {
 
-          $sql = 'Select * from users where email = :email';
+        return static::findByEmail($email) !== false;
+
+     }
+
+    /**
+     * Find a user by email address
+     *
+     * @param string $email email address to search for
+     *
+     * @return mixed User object if found, otherwise false
+     *
+     */
+
+     public static function findByEmail($email) {
+
+         $sql = 'Select * from users where email = :email';
 
             $db = static::getDB();
             $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
