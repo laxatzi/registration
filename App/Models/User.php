@@ -146,7 +146,7 @@ class User extends \Core\Model {
 
             $stmt = $db->prepare($sql);
             $stmt->bindValue(':email', $email, PDO::PARAM_STR);
-            $stmt->setFetchMode(PDO::FETCH_CLASS, 'App\Models\User');
+            $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
             $stmt->execute();
 
             return $stmt->fetch();
