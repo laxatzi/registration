@@ -153,4 +153,17 @@ class User extends \Core\Model {
 
      }
 
+     /**
+      * Authenticate user by email and password.
+      *
+      * @param string $email email address
+      * @param string $password password
+
+      * @return mixed The user object or if authentication fails FALSE
+      */
+
+      public static function authenticate($email, $password) {
+        // authentication code here...
+      }
+
 }
