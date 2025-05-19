@@ -31,7 +31,9 @@
     */
     public function createAction() {
       $user = User::findByEmail($_POST['email']);
+      echo '<pre>';
       var_dump($user);
+      echo '</pre>';
     }
    }
 
