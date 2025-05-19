@@ -3,6 +3,7 @@
   namespace App\Controllers;
 
   use \Core\View;
+  use App\Models\User;
 
   /**
    * Login Controller
@@ -14,7 +15,7 @@
     /**
      * Show the login page
      *
-     * return void
+     * @return void
      *
      */
 
@@ -22,4 +23,14 @@
         View::renderTemplate('Login/login.html');
 
      }
+
+       /**
+    * Log in a user
+    * @return void
+    *
+    */
+    public function createAction() {
+      $user = User::findByEmail($_POST['email']);
+    }
    }
+
