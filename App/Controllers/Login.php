@@ -30,10 +30,11 @@
     *
     */
     public function createAction() {
-      $user = User::findByEmail($_POST['email']);
-      echo '<pre>';
-      var_dump($user);
-      echo '</pre>';
+      $user = User::authenticate($_POST['email'], $_POST['password']);
+      if ($user) {
+        header('Location:http//'. $_SERVER['HTTP_HOST']. '/', TRUE, 303);
+        exit;
+      }
     }
    }
 
