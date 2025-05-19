@@ -121,7 +121,7 @@ class User extends \Core\Model {
      * @return boolean True if a record already exists
      */
 
-     protected function emailExist($email) {
+     public function emailExist($email) {
 
         return static::findByEmail($email) !== false;
 
@@ -146,11 +146,9 @@ class User extends \Core\Model {
 
             $stmt = $db->prepare($sql);
             $stmt->bindValue(':email', $email, PDO::PARAM_STR);
-
-
             $stmt->execute();
 
-            return $stmt->fetch() !== false;
+            return $stmt->fetch();
 
      }
 
