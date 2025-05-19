@@ -16,7 +16,7 @@ class User extends \Core\Model {
     public $email;
     protected $password;
     protected $password_hash;
-    protected $repeat_password;
+    // protected $repeat_password;
 
     /**
      * Error message
@@ -109,9 +109,9 @@ class User extends \Core\Model {
 
         }
 
-        if($this->password !== $this->repeat_password) {
-            $this->errors[] = "Password should match!";
-        }
+        // if($this->password !== $this->repeat_password) {
+        //     $this->errors[] = "Password should match!";
+        // }
 
      }
 
