@@ -35,6 +35,11 @@
         header('Location:http//'. $_SERVER['HTTP_HOST']. '/', TRUE, 303);
         exit;
       }
-    }
-   }
+      else {
+        View::renderTemplate('Login/login.html');
+      }
+    } // end of login action
+
+
+   }// end of class
 
