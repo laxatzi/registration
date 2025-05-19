@@ -170,19 +170,7 @@ footer %}
 {% endif %}
 
 <form method="POST" action="/signup/create" id="signup-form">
-  <div class="inputForm">
-    <label for="inputName">Name</label>
-    <input
-      type="text"
-      id="inputName"
-      placeholder="Name"
-      name="name"
-      value="{{ user.name }}"
-      autofocus
-      required
-      minlength="5"
-    />
-  </div>
+
 
   <div class="inputForm">
     <label for="inputEmail">Email address</label>
@@ -210,21 +198,9 @@ footer %}
   <div id="password-success" class="error" style="color: green"></div>
   <div id="password-error" class="error" style="color: red"></div>
 
-  <!-- Password Repeat Input (now hidden)
-  <div class="inputForm">
-    <label for="inputPasswordRepeat">Repeat Password</label>
-    <input
-      type="password"
-      id="inputPasswordRepeat"
-      placeholder="Repeat password"
-      name="repeat_password"
-      autofocus
-    />
-  </div>
-  <div id="password_repeat-success" class="error" style="color: green"></div>
-  <div id="password_repeat-error" class="error" style="color: red"></div> -->
 
-  <button type="submit" style="margin-top: 20px">Sign Up</button>
+
+  <button type="submit" style="margin-top: 20px">Login Up</button>
 </form>
 
 {% endblock %}
