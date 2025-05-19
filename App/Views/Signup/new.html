@@ -74,10 +74,17 @@ footer %}
     // Toggle Password
 
     checkbox.addEventListener("change", function () {
-      [passwordInput, passwordInputRepeat].forEach((field) => {
-        field.type = field.type === "password" ? "text" : "password";
-      });
+      passwordInput.type =
+        passwordInput.type === "password" ? "text" : "password";
     });
+
+    // #Password Repeat Validator (inactive for now)
+
+    // checkbox.addEventListener("change", function () {
+    //   [passwordInput, passwordInputRepeat].forEach((field) => {
+    //     field.type = field.type === "password" ? "text" : "password";
+    //   });
+    // });
 
     // passwordInputRepeat.addEventListener("input", function () {
     //   const repeatPassword = passwordInputRepeat.value;
@@ -203,7 +210,8 @@ footer %}
   <div id="password-success" class="error" style="color: green"></div>
   <div id="password-error" class="error" style="color: red"></div>
 
-  <!-- <div class="inputForm">
+  <!-- Password Repeat Input (now hidden)
+  <div class="inputForm">
     <label for="inputPasswordRepeat">Repeat Password</label>
     <input
       type="password"
