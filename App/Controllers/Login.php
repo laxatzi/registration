@@ -18,7 +18,7 @@
      *
      */
 
-     public function newAction() {
+     public function loginAction() {
         View::renderTemplate('Login/login.html');
 
      }
