@@ -34,7 +34,7 @@ class User extends \Core\Model {
      * @return void
      */
 
-    public function __construct($data){
+    public function __construct($data=[]){
         foreach ($data as $key => $value) {
             $this->$key = $value;
         }
@@ -146,6 +146,7 @@ class User extends \Core\Model {
 
             $stmt = $db->prepare($sql);
             $stmt->bindValue(':email', $email, PDO::PARAM_STR);
+            $stmt->setFetchMode(PDO::FETCH_CLASS, 'App\Models\User');
             $stmt->execute();
 
             return $stmt->fetch();
