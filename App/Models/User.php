@@ -163,7 +163,15 @@ class User extends \Core\Model {
       */
 
       public static function authenticate($email, $password) {
-        // authentication code here...
+        // First we want to find the user based on the email address
+        $user = static::findByEmail($email);
+        // Once user is found, we then check password
+        if ($user) {
+            if (password_verify($password, $user->password_hash)) {
+                return $user;
+            }
+        }
+        return false;
       }
 
 }
