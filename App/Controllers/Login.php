@@ -19,6 +19,7 @@
      */
 
      public function newAction() {
+        View::renderTemplate('Login/login.html');
 
      }
    }
