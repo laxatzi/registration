@@ -24,12 +24,14 @@
 
     }
 
-      /**
+    /**
     * Log in a user
     * @return void
     *
     */
+
     public function createAction() {
+      /** check that email and password are correct */
       $user = User::authenticate($_POST['email'], $_POST['password']);
       if ($user) {
         header('Location:http//'. $_SERVER['HTTP_HOST']. '/', TRUE, 303);

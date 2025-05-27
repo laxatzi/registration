@@ -23,7 +23,7 @@ class Signup extends \Core\Controller
         View::renderTemplate('Signup/new.html');
     }
 
-   /**
+  /**
      * Register a new user
      *
      * @return void
@@ -31,26 +31,26 @@ class Signup extends \Core\Controller
     public function createAction() {
         $user = new User($_POST);
 
-       if($user->save()) {
-         header('Location: http://' . $_SERVER['HTTP_HOST'] . '/signup/success', true, 303);
-         exit;
+      if($user->save()) {
+        header('Location: http://' . $_SERVER['HTTP_HOST'] . '/signup/success', true, 303);
+        exit;
 
-       } else {
+      } else {
         View::renderTemplate('Signup/new.html', [ 'user' => $user]);
 
-       }
+      }
 
     }
 
-   /**
+  /**
      * Display Signup page
      *
      * @return void
      */
 
-     public function successAction(){
-       View::renderTemplate('Signup/success.html');
+    public function successAction(){
+      View::renderTemplate('Signup/success.html');
 
-     }
+    }
 
 }

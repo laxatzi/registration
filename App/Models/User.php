@@ -23,7 +23,7 @@ class User extends \Core\Model {
      * @var array
      */
 
-     public $errors = [];
+    public $errors = [];
 
 
     /**
@@ -51,7 +51,7 @@ class User extends \Core\Model {
          // if no errors
         if (empty($this->errors)) {
 
-           $password_hash = password_hash($this->password, PASSWORD_DEFAULT);
+        $password_hash = password_hash($this->password, PASSWORD_DEFAULT);
 
 
             $sql = 'INSERT INTO USERS (name, email, password ) VALUES (:name, :email, :password_hash)';
@@ -65,7 +65,7 @@ class User extends \Core\Model {
             $stmt->bindValue(':email', $this->email, PDO::PARAM_STR);
             $stmt->bindValue(':password_hash', $password_hash, PDO::PARAM_STR);
             // execute() MUST be returned
-           return $stmt->execute();
+        return $stmt->execute();
         }
 
         return false;
@@ -77,7 +77,7 @@ class User extends \Core\Model {
      * @return void
      */
 
-     public function validate() {
+    public function validate() {
         // Name
         if ($this->name == '') {
             $this->errors[] = "Name is required!";
@@ -104,7 +104,7 @@ class User extends \Core\Model {
             $this->errors[] = "Password needs at least one letter!";
         }
 
-          if(preg_match('/.*\d+.*/i', $this->password)==0) {
+        if(preg_match('/.*\d+.*/i', $this->password)==0) {
             $this->errors[] = "Password needs at least one number!";
 
         }
@@ -113,19 +113,19 @@ class User extends \Core\Model {
         //     $this->errors[] = "Password should match!";
         // }
 
-     }
+    }
 
-      /**
+    /**
      * Check if a user record already exists with the specified email
      * @param string $email email address to search for
      * @return boolean True if a record already exists
      */
 
-     public function emailExist($email) {
+    public function emailExist($email) {
 
         return static::findByEmail($email) !== false;
 
-     }
+    }
 
     /**
      * Find a user by email address
@@ -136,7 +136,7 @@ class User extends \Core\Model {
      *
      */
 
-     public static function findByEmail($email) {
+    public static function findByEmail($email) {
 
          $sql = 'Select * from users where email = :email';
 
@@ -151,9 +151,9 @@ class User extends \Core\Model {
 
             return $stmt->fetch();
 
-     }
+    }
 
-     /**
+    /**
       * Authenticate user by email and password.
       *
       * @param string $email email address
@@ -162,7 +162,7 @@ class User extends \Core\Model {
       * @return mixed The user object or if authentication fails FALSE
       */
 
-      public static function authenticate($email, $password) {
+    public static function authenticate($email, $password) {
         // First we want to find the user based on the email address
         $user = static::findByEmail($email);
         // Once user is found, we then check password
@@ -172,6 +172,6 @@ class User extends \Core\Model {
             }
         }
         return false;
-      }
+    }
 
 }
