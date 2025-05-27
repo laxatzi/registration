@@ -11,7 +11,7 @@
    *
    */
 
-   Class Login extends \Core\Controller {
+  Class Login extends \Core\Controller {
     /**
      * Show the login page
      *
@@ -19,12 +19,12 @@
      *
      */
 
-     public function loginAction() {
+    public function loginAction() {
         View::renderTemplate('Login/login.html');
 
-     }
+    }
 
-       /**
+      /**
     * Log in a user
     * @return void
     *
@@ -41,5 +41,7 @@
     } // end of login action
 
 
-   }// end of class
+  }// end of class
+
+
 
