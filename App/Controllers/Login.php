@@ -33,6 +33,7 @@
     public function createAction() {
       /** check that email and password are correct */
       $user = User::authenticate($_POST['email'], $_POST['password']);
+      /** If $user authenticates we direct the page to the home page Otherwise will display the login page again */
       if ($user) {
         header('Location:http//'. $_SERVER['HTTP_HOST']. '/', TRUE, 303);
         exit;
@@ -40,10 +41,9 @@
       else {
         View::renderTemplate('Login/login.html');
       }
-    } // end of login action
+    }
 
 
-  }// end of class
-
+  }
 
 
