@@ -39,7 +39,11 @@
         exit;
       }
       else {
-        View::renderTemplate('Login/login.html');
+        View::renderTemplate('Login/login.html', [
+          // pass in email address when render the template - this way the email value is preserved
+          'email' => $_POST['email'],
+        ]);
+
       }
     }
 
