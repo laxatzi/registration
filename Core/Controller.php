@@ -70,4 +70,17 @@ abstract class Controller
     protected function after()
     {
     }
+
+    /**
+     * Redirect to a different page
+     *
+     * @param string $url the relative URL $name
+     *
+     * @return void
+     *
+     *
+     */
+    public function redirect($url) {
+        // code here...
+    }
 }
