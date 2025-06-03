@@ -81,6 +81,8 @@ abstract class Controller
      *
      */
     public function redirect($url) {
-        // code here...
+        // redirect to the specified URL
+        header('Location: http://'. $_SERVER['HTTP_HOST']. '/', TRUE, 303);
+        exit;
     }
 }
