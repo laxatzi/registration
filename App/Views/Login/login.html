@@ -1,17 +1,13 @@
-{% extends "base.html" %} {% block title %}Login{% endblock %} {% block
-footer %}
+{% extends "base.html" %} {% block title %}Login{% endblock %} {% block footer
+%}
 
-<script>
-</script>
+<script></script>
 
 {% endblock %} {% block body %}
 
 <h1>Login page</h1>
 
-
 <form method="POST" action="/login/create" id="signup-form">
-
-
   <div class="inputForm">
     <label for="inputEmail">Email address</label>
     <input
@@ -19,7 +15,7 @@ footer %}
       id="inputEmail"
       placeholder="Email address"
       name="email"
-      value="{{ user.email }}"
+      value="{{ email }}"
       autofocus
     />
     <div id="emailFeedback" style="color: red"></div>
