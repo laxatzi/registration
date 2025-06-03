@@ -167,7 +167,7 @@ class User extends \Core\Model {
         $user = static::findByEmail($email);
         // Once user is found, we then check password
         if ($user) {
-            if (password_verify($password, $user->password_hash)) {
+            if (password_verify($password, $user->password)) {
                 return $user;
             }
         }
