@@ -34,5 +34,5 @@ $router = new Core\Router();
 $router->add('', ['controller' => 'Home', 'action' => 'index']);
 $router->add('login', ['controller' => 'Login', 'action' => 'login']);
 $router->add('{controller}/{action}');
-
+$router->add('logout', ['controller' => 'Login', 'action' => 'destroy']);
 $router->dispatch($_SERVER['QUERY_STRING']);
