@@ -66,6 +66,8 @@
 
         // Finally, destroy the session.
         session_destroy();
+        // redirect to the login page
+        $this->redirect('/login');
     }
 
 
