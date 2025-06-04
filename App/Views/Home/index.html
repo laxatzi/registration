@@ -1,7 +1,8 @@
 {% extends "base.html" %} {% block title %}Home{% endblock %} {% block body %}
 
 <h1>Welcome!!</h1>
-<a href="/signup/new">Sign Up! </a> or <br>
+{% if session.user_id %} User with ID: {{ session.user_id }} is logged in. {%
+else %}
+<a href="/signup/new">Sign Up! </a> or <br />
 <a href="/login">Login</a>
-
-{% endblock %}
+{% endif %} {% endblock %}
