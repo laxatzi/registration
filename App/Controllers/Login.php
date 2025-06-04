@@ -35,6 +35,8 @@
       $user = User::authenticate($_POST['email'], $_POST['password']);
       /** If $user authenticates we direct the page to the home page Otherwise will display the login page again */
       if ($user) {
+        // regenerate the session to prevent session fixation attacks
+        session_regenerate_id(true);
         // store the user id in the session
         // this is used to identify the user in other parts of the application
         $_SESSION['user_id'] = $user->id;
