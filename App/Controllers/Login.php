@@ -50,10 +50,6 @@
       }
     }
 
-    // public function createAction() {
-    //   echo($_REQUEST['email']. ', '. $_REQUEST['password']);
-    // }
-
 
   }
 
