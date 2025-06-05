@@ -48,6 +48,7 @@ class View
             $twig = new \Twig\Environment($loader);
             // adding session as a global variable
             $twig->addGlobal('session', $_SESSION);
+            $twig->addGlobal('isLoggedIn', \App\Auth::isLoggedIn());
         }
 
 
