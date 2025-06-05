@@ -14,7 +14,7 @@ class Auth
   /**
    * Login the user by setting the user ID in the session.
    *
-   * @param User $user The user object to log in.
+   * @param User $user  The user model to log in.
    * @return void
    *
    */
