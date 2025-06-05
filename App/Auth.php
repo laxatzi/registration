@@ -48,7 +48,7 @@ public static function logout()   {
 
         // Finally, destroy the session.
         session_destroy();
-        // redirect to the login page
+
 
 }
 
