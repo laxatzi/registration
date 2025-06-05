@@ -52,4 +52,15 @@ public static function logout()   {
 
 }
 
+/**
+ * Check if the user is logged in.
+ * @return bool True if the user is logged in, false otherwise.
+ */
+public static function isLoggedIn() {
+    // check if the user id is set in the session
+    return isset($_SESSION['user_id']);
+  }
+
+
+
 }
