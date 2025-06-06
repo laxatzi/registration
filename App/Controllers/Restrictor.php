@@ -17,7 +17,7 @@
 
     public function indexAction() {
       if (! Auth::isLoggedIn()) {
-        exit("Access denied. You must be logged in to view this page.");
+        $this->redirect ('/login');
       }
       View::renderTemplate('Restrictor/index.html');
   }
