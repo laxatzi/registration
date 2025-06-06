@@ -17,6 +17,9 @@
 
     public function indexAction() {
       if (! Auth::isLoggedIn()) {
+
+          Auth::rememberRequestedUrl();
+
         $this->redirect ('/login');
       }
       View::renderTemplate('Restrictor/index.html');

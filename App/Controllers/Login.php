@@ -38,7 +38,7 @@
       if ($user) {
 
         Auth::login($user);
-        $this->redirect('/');
+        $this->redirect(Auth::get_return_to());
       }
       else {
         View::renderTemplate('Login/login.html', [
