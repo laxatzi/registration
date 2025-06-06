@@ -51,7 +51,7 @@
 
     public function destroyAction() {
         Auth::logout();
-        $this->redirect('/login');
+        $this->redirect('/');
     }
 
 
