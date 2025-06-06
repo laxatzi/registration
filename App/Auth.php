@@ -74,4 +74,15 @@ class Auth
         }
 
     }
+
+     /**
+     * Get the original requested URL
+     *
+     * @return void
+     */
+    public static function get_return_to()
+    {
+        return $_SESSION['return_to'] ?? '/';
+
+    }
 }
