@@ -75,7 +75,7 @@ class Auth
 
     }
 
-     /**
+    /**
      * Get the original requested URL
      *
      * @return void

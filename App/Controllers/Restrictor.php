@@ -12,7 +12,7 @@
   class Restrictor extends \Core\Controller {
     /**
      * just show an index view
-     * * @return void
+     * @return void
      */
 
     public function indexAction() {

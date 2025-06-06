@@ -49,6 +49,12 @@
       }
     }
 
+    /**
+     * Log out a user
+     *
+     * @return void
+     */
+
     public function destroyAction() {
         Auth::logout();
         $this->redirect('/');
