@@ -62,16 +62,14 @@ class Auth
         return isset($_SESSION['user_id']);
     }
 
-      /**
+    /**
      * Remember the original requested URL
      *
      * @return void
      */
     public static function rememberRequestedUrl()
     {
-        if (isset($_SERVER['REQUEST_URI'])) {
             $_SESSION['return_to'] = $_SERVER['REQUEST_URI'];
-        }
 
     }
 
@@ -82,7 +80,9 @@ class Auth
      */
     public static function get_return_to()
     {
-        return $_SESSION['return_to'] ?? '/';
+        $url = $_SESSION['return_to'] ?? '/';
+        unset($_SESSION['return_to']);
+        return $url;
 
     }
 }
