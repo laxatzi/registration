@@ -10,6 +10,19 @@
    */
 
   class Restrictor extends \Core\Controller {
+
+  /**
+     * Require the user to be authenticated before allowing access to the action methods
+     *
+     * @return void
+     */
+    protected function before() {
+
+        $this->redirect('/login');
+      }
+
+
+
     /**
      * just show an index view
      * @return void
@@ -23,7 +36,7 @@
   }
 
   /**
-   * Show the new page
+   * Show the new view
    *
    * @return void
    */
