@@ -2,6 +2,7 @@
 
 <h1>Welcome!!</h1>
 {% if isLoggedIn %}
+<p>Welcome back, {{ user.name }}!</p>
 <br />
 <a href="/logout">Logout</a>{% else %} <a href="/signup/new">Sign Up! </a> or
 <br />
