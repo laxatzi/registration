@@ -1,7 +1,7 @@
 <?php
 
 namespace App;
-
+use App\Models\User;
 /**
  * Authentication
  *
@@ -67,9 +67,9 @@ class Auth
      *
      * @return void
      */
-    public static function rememberRequestedUrl()
-    {
-            $_SESSION['return_to'] = $_SERVER['REQUEST_URI'];
+    public static function rememberRequestedUrl(){
+
+        $_SESSION['return_to'] = $_SERVER['REQUEST_URI'];
 
     }
 
@@ -78,11 +78,26 @@ class Auth
      *
      * @return void
      */
-    public static function get_return_to()
-    {
+    public static function get_return_to(){
+
         $url = $_SESSION['return_to'] ?? '/';
         unset($_SESSION['return_to']);
         return $url;
 
     }
+
+    /**
+     * Get the currently logged in user
+     *
+     *  user model if logged in, null otherwise
+     *
+     */
+    public static function getUser()
+    {
+        if (isset($_SESSION['user_id'])) {
+            return User::findById($_SESSION['user_id']);
+        }
+    }
+
 }
+
