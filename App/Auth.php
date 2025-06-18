@@ -52,15 +52,7 @@ class Auth
         session_destroy();
     }
 
-    /**
-     * Return indicator of whether a user is logged in or not
-     *
-     * @return boolean
-     */
-    public static function isLoggedIn()
-    {
-        return isset($_SESSION['user_id']);
-    }
+
 
     /**
      * Remember the original requested URL
