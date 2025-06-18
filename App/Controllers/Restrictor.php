@@ -21,6 +21,20 @@
 
       View::renderTemplate('Restrictor/index.html');
   }
+
+  /**
+   * Show the new page
+   *
+   * @return void
+   */
+
+  public function newAction() {
+
+    $this->requireLogin();
+
+    View::renderTemplate('Restrictor/new.html');
+  }
+
   }
 
 
