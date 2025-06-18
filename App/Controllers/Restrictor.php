@@ -9,7 +9,7 @@
    *
    */
 
-  class Restrictor extends \Core\Controller {
+  class Restrictor extends Authenticated {
 
 
 
@@ -20,7 +20,6 @@
 
     public function indexAction() {
 
-      $this->requireLogin();
 
       View::renderTemplate('Restrictor/index.html');
   }
@@ -33,7 +32,7 @@
 
   public function newAction() {
 
-    $this->requireLogin();
+
 
     View::renderTemplate('Restrictor/new.html');
   }
