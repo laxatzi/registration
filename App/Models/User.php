@@ -186,4 +186,45 @@ class User extends \Core\Model {
         return false;
     }
 
+
+
+    /**
+     * Find a user by ID
+     *
+     *
+     * @param string $id the user ID
+     *
+     * @return mixed User object if found, otherwise false
+     *
+     * Being STATIC means you can call it without creating an instance of the class.
+     *
+     */
+
+    public static function findById($id) {
+         // Prepares a SQL query to get a user where the id matches the placeholder :id
+         $sql = 'Select * from users where id = :id';
+            //Calls a method getDB() — likely from a parent or base class. This method returns a PDO database connection.
+            // static:: refers to the class where this method was called, supporting inheritance (late static binding).
+            $db = static::getDB();
+            //Ensures that if the database has an issue, it throws an exception rather than failing silently.
+            $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+            //Prepares the SQL query using PDO's prepare() method.
+            // This gives you a prepared statement object, which is more secure (helps prevent SQL injection).
+            $stmt = $db->prepare($sql);
+            // Binds the actual $id value to the :id placeholder in the query.
+            //PDO::PARAM_INT tells PDO it’s a string.
+            $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+            //Tells PDO to fetch the result as an instance of the class that called this method.
+            //So if this is part of a User model, you'll get a User object back instead of a plain array or stdClass.
+            $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+            //Executes the prepared SQL statement.
+            $stmt->execute();
+            //Fetches one row from the result set.
+            //Because of PDO::FETCH_CLASS, it returns an object of the calling class, with properties populated from the database row.
+            return $stmt->fetch();
+
+    }
+
+
 }
