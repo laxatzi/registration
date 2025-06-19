@@ -3,6 +3,7 @@
 namespace Core;
 
 use \App\Auth;
+use \App\Flash;
 
 /**
  * Base controller
@@ -98,7 +99,9 @@ abstract class Controller
      */
     public function requireLogin()
     {
-        if (! Auth::isLoggedIn()) {
+        if (! Auth::getUser()) {
+        // if user is not logged in, show a flash message
+            \App\Flash::addMessage('You must be logged in to access that page.', 'warning');
             Auth::rememberRequestedUrl();
             $this->redirect ('/login');
     }}
