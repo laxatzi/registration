@@ -66,20 +66,17 @@ button:hover {
 .flash-message {
   margin-top: 5px;
   border: 1px solid #c4c4c4;
-  padding: 10px;
+  padding: 5px;
+  background-color: #f5f5f5;
 }
 
 .flash-message--success {
   color: #155724;
 }
 
-.flash-message--error {
-  color: #721c24;
-}
-
 .flash-message--info {
-  color: #0c5460;
+  color: #2a13ae;
 }
 .flash-message--warning {
-  color: #856404;
+  color: #74090e;
 }
