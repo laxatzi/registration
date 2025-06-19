@@ -32,6 +32,21 @@ class Flash {
         $_SESSION['flash'][] = $message;
     }
 
+    /**
+     * Get all flash messages and clear them from the session
+     *
+     * @return array
+     */
+    public static function getMessages()
+    {
+        self::initFlashArray();
+        $messages = $_SESSION['flash'];
+        $_SESSION['flash'] = []; // clear messages after retrieving them
+        return $messages;
+    }
+
+
 }
+
 
 
