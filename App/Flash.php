@@ -37,7 +37,7 @@ class Flash {
     {
         self::initFlashArray();
         $_SESSION['flash'][] = [
-            'message' => $message,
+            'body' => $message,
             'type' => $type
         ];
     }

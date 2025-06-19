@@ -101,7 +101,7 @@ abstract class Controller
     {
         if (! Auth::getUser()) {
         // if user is not logged in, show a flash message
-            \App\Flash::addMessage('You must be logged in to access that page.', 'warning');
+            \App\Flash::addMessage('You must be logged in to access that page.', Flash::WARNING);
             Auth::rememberRequestedUrl();
             $this->redirect ('/login');
     }}
