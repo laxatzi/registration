@@ -68,6 +68,10 @@
     </style>
   </head>
   <body>
-    {% block body %} {% endblock %} {% block footer %}{% endblock %}
+    {% for message in flash_messages %}
+    <div>{{message}}</div>
+    {%endfor %} {% block header %} {% endblock %} {% block nav %} {% endblock %}
+    {% block content %} {% endblock %} {% block body %} {% endblock %} {% block
+    footer %}{% endblock %}
   </body>
 </html>
