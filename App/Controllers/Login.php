@@ -5,6 +5,7 @@
   use \Core\View;
   use \App\Models\User;
   use \App\Auth;
+use App\Flash;
 
   /**
    * Login Controller
@@ -38,6 +39,8 @@
       if ($user) {
 
         Auth::login($user);
+
+        Flash::addMessage('Login successful'); // add a flash message to notify the user that login was successful
         $this->redirect(Auth::get_return_to());
       }
       else {
