@@ -8,7 +8,14 @@ namespace App;
  */
 
 class Flash {
+    /**
+     * Flash message types
+     * These constants are used to define the type of flash message.
+     */
 
+    const SUCCESS = 'success';
+    const WARNING = 'warning';
+    const INFO = 'info';
     /**
      * Initialize the flash messages array in the session
      */
@@ -26,10 +33,13 @@ class Flash {
      *
      */
 
-    public static function addMessage($message)
+    public static function addMessage($message, $type = 'info')
     {
         self::initFlashArray();
-        $_SESSION['flash'][] = $message;
+        $_SESSION['flash'][] = [
+            'message' => $message,
+            'type' => $type
+        ];
     }
 
     /**
