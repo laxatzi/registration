@@ -41,7 +41,7 @@ class Flash {
     {
         self::initFlashArray();
         $messages = $_SESSION['flash'];
-        $_SESSION['flash'] = []; // clear messages after retrieving them
+        $_SESSION['flash'] = []; // clear messages after retrieving them. The flash messages are meant to be one-time notifications.
         return $messages;
     }
 
