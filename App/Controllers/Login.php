@@ -62,7 +62,17 @@ use App\Flash;
 
     public function destroyAction() {
         Auth::logout();
-        $this->redirect('/');
+        $this->redirect('/login/logout-flash-message'); // redirect to the home page after logging out
+
+    }
+
+    /**
+     * Show a logout message
+     *
+     */
+    public function logoutFlashMessageAction() {
+        Flash::addMessage('You have been logged out.'); // add a flash message to notify the user that they have been logged out
+        $this->redirect('/'); // redirect to the home page after logging out
     }
 
 
