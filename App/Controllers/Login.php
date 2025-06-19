@@ -44,6 +44,8 @@ use App\Flash;
         $this->redirect(Auth::get_return_to());
       }
       else {
+        Flash::addMessage('Login unsuccessful. Please check your email and password.', 'danger'); // add a flash message to notify the user that login was unsuccessful
+
         View::renderTemplate('Login/login.html', [
           // pass in email address when render the template - this way the email value is preserved
           'email' => $_POST['email'],
