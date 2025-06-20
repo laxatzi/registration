@@ -45,7 +45,7 @@ class Token {
     */
 
     public function getHashedValue() {
-        return password_hmac('sha256', $this->token, "PogN1yqiTIZaLNRSxlIkL0tscOnxsoFm");
+        return password_hmac('sha256', $this->token, \App\Config::SECRET_KEY, true);
     }
 
 
