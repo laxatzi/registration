@@ -35,6 +35,8 @@ use App\Flash;
     public function createAction() {
       /** check that email and password are correct */
       $user = User::authenticate($_POST['email'], $_POST['password']);
+      $remember_me = isset($_POST['remember_me']); //
+
       /** If $user authenticates we direct the page to the home page Otherwise will display the login page again */
       if ($user) {
 
@@ -49,6 +51,7 @@ use App\Flash;
         View::renderTemplate('Login/login.html', [
           // pass in email address when render the template - this way the email value is preserved
           'email' => $_POST['email'],
+          'remember_me' => $remember_me // pass in the remember me value when rendering the template
         ]);
 
       }

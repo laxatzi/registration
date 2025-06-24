@@ -30,6 +30,23 @@
       autofocus
     />
   </div>
+  <div>
+    <label>
+      <input
+        type="checkbox"
+        name="remember_me"
+        {%
+        if
+        remember_me
+        %}
+        checked="checked"
+        {%
+        endif
+        %}
+      />
+      Remember me
+    </label>
+  </div>
   <div id="password-error" class="error" style="color: red"></div>
 
   <button type="submit" style="margin-top: 20px">Login</button>
