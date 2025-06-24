@@ -23,8 +23,14 @@ class Token {
      */
 
 
-    public function __construct() {
-        $this->token = bin2hex(random_bytes(16));
+    public function __construct($token=null) {
+        // If a token is provided, use it; otherwise, generate a new one
+        if ($token) {
+            $this->token = $token;
+        } else {
+          $this->token = bin2hex(random_bytes(16));
+
+        }
 
 
 }
@@ -45,7 +51,7 @@ class Token {
     */
 
     public function getHashedValue() {
-        return password_hmac('sha256', $this->token, \App\Config::SECRET_KEY, true);
+        return hash_hmac('sha256', $this->token, \App\Config::SECRET_KEY, true);
     }
 
 

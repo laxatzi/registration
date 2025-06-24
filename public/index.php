@@ -7,7 +7,7 @@
  */
 
 
-
+ini_set('session.cookie_life', '864000'); // Set session cookie lifetime to 10 days
 /**
  * Composer
  */
