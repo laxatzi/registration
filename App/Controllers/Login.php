@@ -40,7 +40,7 @@ use App\Flash;
       /** If $user authenticates we direct the page to the home page Otherwise will display the login page again */
       if ($user) {
 
-        Auth::login($user);
+        Auth::login($user, $remember_me);
 
         Flash::addMessage('Login successful', Flash::SUCCESS); // add a flash message to notify the user that login was successful
         $this->redirect(Auth::get_return_to());

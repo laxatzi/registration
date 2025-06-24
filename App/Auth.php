@@ -13,15 +13,24 @@ class Auth
      * Login the user
      *
      * @param User $user The user model
+     * @param boolean $remember_me Remember the login if true
      *
      * @return void
      */
-    public static function login($user)
+    public static function login($user, $remember_me = false)
     {
+    // Regenerate session ID to prevent session fixation attacks
+
         session_regenerate_id(true);
 
         $_SESSION['user_id'] = $user->id;
+
+        // If remember me is true, set a cookie with the user ID
+        if ($remember_me) {
+            $user->rememberLogin();
+        }
     }
+
 
     /**
      * Logout the user
@@ -30,14 +39,15 @@ class Auth
      */
     public static function logout()
     {
-      // Unset all of the session variables
+
+        // Unset all of the session variables
         $_SESSION = [];
 
-      // Delete the session cookie
+        // Delete the session cookie
         if (ini_get('session.use_cookies')) {
             $params = session_get_cookie_params();
 
-        setcookie(
+            setcookie(
                 session_name(),
                 '',
                 time() - 42000,
@@ -45,10 +55,10 @@ class Auth
                 $params['domain'],
                 $params['secure'],
                 $params['httponly']
-        );
-    }
+            );
+        }
 
-      // Finally destroy the session
+        // Finally destroy the session
         session_destroy();
     }
 
@@ -67,16 +77,18 @@ class Auth
 
     /**
      * Get the original requested URL
-     *
-     * @return void
+     * @return string
      */
     public static function get_return_to(){
 
         $url = $_SESSION['return_to'] ?? '/';
-        // unset($_SESSION['return_to']);
-        // return $url;
+        unset($_SESSION['return_to']);
+        return $url;
 
     }
+        // return $url;
+
+
 
     /**
      * Get the currently logged in user
