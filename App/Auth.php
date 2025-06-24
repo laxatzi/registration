@@ -73,8 +73,8 @@ class Auth
     public static function get_return_to(){
 
         $url = $_SESSION['return_to'] ?? '/';
-        unset($_SESSION['return_to']);
-        return $url;
+        // unset($_SESSION['return_to']);
+        // return $url;
 
     }
 
