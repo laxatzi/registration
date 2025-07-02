@@ -27,7 +27,13 @@ class Auth
 
         // If remember me is true, set a cookie with the user ID
         if ($remember_me) {
-            $user->rememberLogin();
+           if ( $user->rememberLogin()) {
+                // Set a cookie with the user ID and remember token
+                setcookie('remember_me', $user->remember_token, $user->expiry_timestamp, '/');
+            } else {
+                // Handle error if remember login failed
+                throw new \Exception('Failed to remember login.');
+            }
         }
     }
 
