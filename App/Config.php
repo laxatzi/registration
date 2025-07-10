@@ -48,6 +48,6 @@ class Config
 
 
 
-    const SECRET_KEY = 'PogN1yqiTIZaLNRSxlIkL0tscOnxsoFm';
+    const SECRET_KEY = 'Yi4v8XUX1oe0wtOFcr0RZ10MEdMCC8IP';
 
 }
