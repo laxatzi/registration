@@ -7,7 +7,6 @@
  */
 
 
-ini_set('session.cookie_lifetime', '864000'); // Set session cookie lifetime to 10 days
 /**
  * Composer
  */
@@ -27,7 +26,7 @@ set_exception_handler('Core\Error::exceptionHandler');
 
 session_start();
 
- /**
+/**
  * Routing
  */
 $router = new Core\Router();
