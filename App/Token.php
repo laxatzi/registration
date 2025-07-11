@@ -9,17 +9,19 @@ namespace App;
   */
 
 class Token {
-  /*
+  /**
     * the token value
     *
     * @var array
     */
 
     protected $token;
-    /**
-     * Constructor
+      /**
+     * Class constructor. Create a new random token or assign an existing one if passed in.
      *
-     * @return void
+     * @param string $value (optional) A token value
+     *
+     * @return string  A 32-character token
      */
 
 
@@ -35,7 +37,7 @@ class Token {
 
 }
 
-    /*
+    /**
       * Get Token value
       *
       * @return string token value
@@ -44,7 +46,7 @@ class Token {
         return $this->token;
     }
 
-    /*
+    /**
       * Get the Hashed Token value
       *
       * @return string hashed token value

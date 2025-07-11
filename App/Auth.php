@@ -90,8 +90,8 @@ class Auth
     public static function get_return_to(){
 
         $url = $_SESSION['return_to'] ?? '/';
-        unset($_SESSION['return_to']);
-        return $url;
+        // unset($_SESSION['return_to']);
+        // return $url;
 
     }
         // return $url;
@@ -109,7 +109,7 @@ class Auth
         if (isset($_SESSION['user_id'])) {
             return User::findById($_SESSION['user_id']);
         } else {
-            return static::loginFromRememberMe();
+            return static::loginFromRememberCookie();
         }
     }
 
@@ -118,15 +118,15 @@ class Auth
      * return mixed User model or null if not logged in
      *
      */
-    protected static function loginFromRememberMe()
+    protected static function loginFromRememberCookie()
     {
         $cookie = $_COOKIE['remember_me'] ?? false;
 
         if ($cookie) {
 
-        $remembered_login = \App\Models\RememberedLoggin::findByToken($cookie);
+        $remembered_login = RememberedLogin::findByToken($cookie);
 
-            if ($remembered_login) {
+            if ($remembered_login && ! $remembered_login->hasExpired()) {
 
                 $user = $remembered_login->getUser();
 
