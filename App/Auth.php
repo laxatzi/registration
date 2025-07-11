@@ -2,6 +2,8 @@
 
 namespace App;
 use App\Models\User;
+use App\Models\RememberedLogin;
+
 /**
  * Authentication
  *
@@ -17,7 +19,7 @@ class Auth
      *
      * @return void
      */
-    public static function login($user, $remember_me = false)
+    public static function login($user, $remember_me)
     {
     // Regenerate session ID to prevent session fixation attacks
 
@@ -27,7 +29,7 @@ class Auth
 
         // If remember me is true, set a cookie with the user ID
         if ($remember_me) {
-           if ( $user->rememberLogin()) {
+        if ( $user->rememberLogin()) {
                 // Set a cookie with the user ID and remember token
                 setcookie('remember_me', $user->remember_token, $user->expiry_timestamp, '/');
             } else {
@@ -106,8 +108,36 @@ class Auth
     {
         if (isset($_SESSION['user_id'])) {
             return User::findById($_SESSION['user_id']);
+        } else {
+            return static::loginFromRememberMe();
         }
     }
+
+    /**
+     * Login the user by checking the remember me cookie
+     * return mixed User model or null if not logged in
+     *
+     */
+    protected static function loginFromRememberMe()
+    {
+        $cookie = $_COOKIE['remember_me'] ?? false;
+
+        if ($cookie) {
+
+        $remembered_login = \App\Models\RememberedLoggin::findByToken($cookie);
+
+            if ($remembered_login) {
+
+                $user = $remembered_login->getUser();
+
+                static::login($user, false);
+
+                return $user;
+            }
+        }
+        return null;
+    }
+
 
 }
 
